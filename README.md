@@ -1,5 +1,4 @@
-# Cache-Simulator
-Cache simulator with Python
+# Cache-Simulator w/ Python
 
 These are the instructions given by the instructor:
 The final programming assignment will be a cache simulator.
