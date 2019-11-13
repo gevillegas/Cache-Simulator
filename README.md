@@ -1,6 +1,7 @@
 # Cache-Simulator w/ Python
 
 These are the instructions given by the instructor:
+
 The final programming assignment will be a cache simulator.
 
 The program will have three configuration parameters and a trace file specifier which will consist of a set of memory reference addresses(32-bits in size).
