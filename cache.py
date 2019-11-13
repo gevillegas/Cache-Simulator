@@ -1,29 +1,41 @@
 
 import sys
+
+def error_handling(size_of_cache, cache_line_size, associativity):
+        if size_of_cache >64 or size_of_cache%2 ==1:
+            print("size of cache is invalid")
+            sys.exit()
+
+        if cache_line_size > 128 or cache_line_size%2 == 1:
+            print("size of cache is invalid")
+            sys.exit()
+
+        if associativity < 1:
+            print("associativity value is invalid")
+            sys.exit()
+
+        #Print arguements (only for testing)
+        # print("ALL VALUES ARE VALID\n")
+        # print("size of cache: " + str(size_of_cache))
+        # print("cache line size: " + str(cache_line_size))
+        # print("associativity: " + str(associativity))
+        # print("filename: " + filename)
+
+def output(total_references, total_hits, total_misses):
+    print("Total number of memory references " + str(total_references))
+    print("Cache hits: " + str(total_hits))
+    print("Cache misses: " + str(total_misses))
+
+
+
 if __name__ =="__main__":
 
-    size_of_cache = sys.argv[1]
-    cache_line_size = sys.argv[2]
-    associativity = sys.argv[3]
+    size_of_cache = int(sys.argv[1])
+    cache_line_size = int(sys.argv[2])
+    associativity = int(sys.argv[3])
     filename = sys.argv[4]
 
-    if int(size_of_cache)>64 or int(size_of_cache)%2 ==1:
-        print("size of cache is invalid")
-        sys.exit()
-    # else:
-    #     print("size of cache: " + size_of_cache)
+    error_handling(size_of_cache, cache_line_size, associativity)
 
-    if int(cache_line_size) > 128 or int(cache_line_size)%2 == 1:
-        print("size of cache is invalid")
-        sys.exit()
-    # else:
-    #     print("cache line size: " + cache_line_size)
-
-    if int(associativity) < 1:
-        print("associativity value is invalid")
-        sys.exit()
-
-
-    print("size of cache: " + size_of_cache)
-    print("cache line size: " + cache_line_size)
-    print("associativity: " + associativity)
+    output(1, 1, 1)
+    
