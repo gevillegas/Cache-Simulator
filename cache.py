@@ -26,6 +26,12 @@ def output(total_references, total_hits, total_misses):
     print("Cache hits: " + str(total_hits))
     print("Cache misses: " + str(total_misses))
 
+def openFileContents(filename):
+    file = open(filename, 'r')
+    for i in file:
+        print(int(i))
+    file.close()
+
 
 
 if __name__ =="__main__":
@@ -36,6 +42,6 @@ if __name__ =="__main__":
     filename = sys.argv[4]
 
     error_handling(size_of_cache, cache_line_size, associativity)
+    openFileContents(filename)
 
-    output(1, 1, 1)
-    
+    # output(1, 1, 1)
