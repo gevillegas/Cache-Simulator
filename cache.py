@@ -13,18 +13,13 @@ def error_handling(size_of_cache, cache_line_size, associativity):
             print("associativity value is invalid")
             sys.exit()
 
-        #Print arguements (only for testing)
-        # print("ALL VALUES ARE VALID\n")
-        # print("size of cache: " + str(size_of_cache))
-        # print("cache line size: " + str(cache_line_size))
-        # print("associativity: " + str(associativity))
-        # print("filename: " + filename)
 
 def output(total_references, total_hits, total_misses):
     print("Total number of memory references " + str(total_references))
     print("Cache hits: " + str(total_hits))
     print("Cache misses: " + str(total_misses))
 
+#returns a list of ints with all the addresses in the given file
 def openFileContents(filename):
     list_of_adresses = []
     file = open(filename, 'r')
@@ -42,16 +37,43 @@ if __name__ =="__main__":
     cache_line_size = int(sys.argv[2])
     associativity = int(sys.argv[3])
     filename = sys.argv[4]
+
+    cache_hits = 0
+    cache_misses = 0
+
     error_handling(size_of_cache, cache_line_size, associativity)
 
     list_of_all_adresses = openFileContents(filename)
 
+
     #takes the first elements that fit into the cache
-    cache = list_of_all_adresses[0:size_of_cache]
-
+    cache = []
     #takes the elements that didn't fit into the cache
-    next_in_line = list_of_all_adresses[size_of_cache:]
+    next_in_line = []
+
+    for i in list_of_all_adresses:
+        if i in cache:
+            cache_hits +=1
+        else:
+            if(len(cache) < size_of_cache):
+                cache_misses +=1
+                cache.append(i)
+            else:
+                next_in_line.append(i)
 
 
+    #for this next part I have to make it so that when a miss happens it is added
+    #to the cache
 
+    for i in next_in_line:
+        if i in cache:
+            cache_hits += 1
+            print(str(i) + " is a hit")
+        else:
+            cache_misses += 1
+            print(str(i) + " is a miss")
+
+    print("----------------------------------")
+    print("total hits: " + str(cache_hits))
+    print("total misses: " + str(cache_misses))
     # output(1, 1, 1)
