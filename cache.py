@@ -1,4 +1,3 @@
-
 import sys
 
 def error_handling(size_of_cache, cache_line_size, associativity):
@@ -27,10 +26,13 @@ def output(total_references, total_hits, total_misses):
     print("Cache misses: " + str(total_misses))
 
 def openFileContents(filename):
+    list_of_adresses = []
     file = open(filename, 'r')
+
     for i in file:
-        print(int(i))
+        list_of_adresses.append(int(i))
     file.close()
+    return list_of_adresses
 
 
 
@@ -40,8 +42,16 @@ if __name__ =="__main__":
     cache_line_size = int(sys.argv[2])
     associativity = int(sys.argv[3])
     filename = sys.argv[4]
-
     error_handling(size_of_cache, cache_line_size, associativity)
-    openFileContents(filename)
+
+    list_of_all_adresses = openFileContents(filename)
+
+    #takes the first elements that fit into the cache
+    cache = list_of_all_adresses[0:size_of_cache]
+
+    #takes the elements that didn't fit into the cache
+    next_in_line = list_of_all_adresses[size_of_cache:]
+
+
 
     # output(1, 1, 1)
