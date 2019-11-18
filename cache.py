@@ -85,3 +85,10 @@ if __name__ =="__main__":
     print("----------------------------------")
     print(cache)
     # output(1, 1, 1)
+
+
+    """
+        Questions to ask TA:
+            - What is associativity? How is it used in the project
+            - Are the current outputs I have correct?
+    """
