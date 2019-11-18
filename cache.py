@@ -46,7 +46,7 @@ if __name__ =="__main__":
     list_of_all_adresses = openFileContents(filename)
 
 
-    #takes the first elements that fit into the cache
+    #takes the elements that fit into the cache
     cache = []
     #takes the elements that didn't fit into the cache
     next_in_line = []
@@ -62,18 +62,26 @@ if __name__ =="__main__":
                 next_in_line.append(i)
 
 
-    #for this next part I have to make it so that when a miss happens it is added
-    #to the cache
 
     for i in next_in_line:
         if i in cache:
             cache_hits += 1
             print(str(i) + " is a hit")
+            #these two lines remove the found element and add to the top of the list (MRU)
+            cache.remove(i)
+            cache.insert(0,i)
         else:
             cache_misses += 1
             print(str(i) + " is a miss")
+            #these two lines remove the last element (LRU) and the new miss element to the top of the list (MRU)
+            cache.pop()
+            cache.insert(0, i)
+
 
     print("----------------------------------")
     print("total hits: " + str(cache_hits))
     print("total misses: " + str(cache_misses))
+
+    print("----------------------------------")
+    print(cache)
     # output(1, 1, 1)
